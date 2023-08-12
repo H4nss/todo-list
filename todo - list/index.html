@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+    <title>Todo list</title>
+	
+    <meta charset="utf-8">
+	<meta name="description" content="A personal tool to help you manage your own time">
+	<meta name="keywords" content="todo, list, duties, goals, plans">
+	<meta name="author" content="DF">
+	
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="main.css" type="text/css">
+    <link rel="stylesheet" href="css/fontello.css" type="text/css">
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="todo.js"></script>
+
+</head>
+
+<body>
+	
+    <header>
+
+        <h1>Todo list</h1>
+
+        <div id = "entry">
+
+        <p>It is a tool that helps you organize and track tasks that need to be done within a certain time. 
+            Each task on the list is a short description that indicates what needs to be done. 
+            When a task is complete, you can mark it as complete.</p>
+
+            <div id="container">
+
+                <div id= "button1" class="button">
+                    add field
+                </div>
+
+                <div id= "button2" class="button">
+                    add task
+                </div>
+
+                <div style="clear:both"></div>
+
+                <input type="text" class="input" id = "text1"/> 
+
+                <div class="confirm" id="confirm1"> 
+                    
+                    <i class="icon-ok"></i> 
+                    
+                </div>
+
+                <div class="cancel" id="cancel1"> 
+
+                    <i class="icon-cancel"></i> 
+                    
+                </div>
+                
+                <div style="clear:both"></div>
+
+                <div id="fields"> 
+                    
+                </div>
+
+                <input type="text" class="input" id = "text2"/> 
+
+                <div class="confirm" id="confirm2"> 
+                    
+                    <i class="icon-ok"></i> 
+                    
+                </div>
+
+                <div class="cancel" id="cancel2"> 
+
+                    <i class="icon-cancel"></i> 
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <article>
+
+            <section>
+
+                <div id = "task">
+
+                    <h2>No tasks</h2>
+
+                </div>
+
+            </section>
+
+        </article>
+
+    </main>
+
+	
+</body>
+</html>

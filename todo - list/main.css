@@ -1,0 +1,158 @@
+body
+{
+	background-color: #2F3336;
+	color: #ddd;
+    font-size: 20px;
+    font-family: 'Kalam', cursive;
+}
+
+h1
+{
+    font-size: 48px;
+    font-weight: 700;
+    color: #1c74b2;
+    text-align: center;
+    margin: 20px;
+}
+
+h2
+{
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+}
+
+#entry
+{
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom: 60px;
+}
+
+#container
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    border-radius: 5px;
+}
+
+.button
+{
+    width: 190px;
+    float: left;
+    text-align: center;
+    margin: 5px;
+    background-color: #1c74b2;
+    border-radius: 5px;
+}
+
+.button:hover
+{
+    width: 190px;
+    float: left;
+    text-align: center;
+    margin: 5px;
+    background-color: #47a1e0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input
+{
+    margin: 5px;
+    background-color: #1c74b2;
+    width: 300px;
+    border: 1px solid #185988;
+    border-radius: 5px;
+    min-height: 28px;
+    color: #ddd;
+    font-size: 14px;
+    float: left;
+    display: none;
+}
+
+.cancel
+{
+    border-radius: 5px;
+    background-color: #1c74b2;
+    height: 32px;
+    width: 32px;
+    float: left;
+    margin: 5px;
+    text-align: center;
+    display: none;
+}
+
+.cancel:hover
+{
+    border-radius: 5px;
+    background-color: #47a1e0;
+    height: 32px;
+    width: 32px;
+    float: left;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.confirm
+{
+    border-radius: 5px;
+    background-color: #1c74b2;
+    height: 32px;
+    width: 32px;
+    float: left;
+    margin: 5px;
+    text-align: center;
+    display: none;
+    float: left;
+}
+
+.confirm:hover
+{
+    border-radius: 5px;
+    background-color: #47a1e0;
+    height: 32px;
+    width: 32px;
+    float: left;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#fields
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+.selectField
+{
+    margin-top: 10px;
+    margin-left: 5px;
+    background-color: #1c74b2;
+    width: 390px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.selectField:hover
+{
+    margin-top: 10px;
+    margin-left: 5px;
+    background-color: #47a1e0;
+    width: 390px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#list
+{
+    font-size: 32px;
+    padding-left: 35%;
+}
+
+
