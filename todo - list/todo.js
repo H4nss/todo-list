@@ -82,9 +82,9 @@ function addTask()
                 var content = "<div class='selectField'>" + tasks[i][0] + "</div>";
                 $("#fields").html(oldContent + content);
                 
-                $(".selectField").on("click", function() {
-                    taskContent(i); // problem  w tym że argument i zawsze jest wywoływany z wartością 10
-                  });
+                $('#' + i).on("click", () => {
+                    taskContent(i); //tylko ostatni tworzony div ma przypisana funkcje z odpowiednim argumentem, pozostale w ogole nie reaguja na onclick 
+                });
             }
         }
 
