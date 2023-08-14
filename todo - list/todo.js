@@ -2,6 +2,7 @@ window.onload = start;
 
 var tasks = new Array(10);
 var fieldList = false;
+var lock = false;
 
 for(i = 0; i < 10; i++)
 {
@@ -20,7 +21,6 @@ function start()
     $("#cancel1").on("click", closeField);
     $("#confirm1").on("click", newField);
     $("#cancel2").on("click", closeTask);
-    $("#confirm2").on("click", newTask);
 }
 
 function addField()
@@ -59,7 +59,7 @@ function newField()
         else i++;
     }
     var oldContent = $("#task").html();
-    $("#task").html(oldContent + "<ul id='list'><li>" + tasks[i][0] + "</li></ul>");
+    $("#task").html(oldContent + "<ul class='list' id='list" + i + "'><li>" + tasks[i][0] + "</li> <ol class='sublist' id='sublist" + i + "'> </ol> </ul>");
 }
 
 function addTask()
@@ -79,14 +79,12 @@ function addTask()
             if(tasks[i][0] != " ")
             {
                 var oldContent = $("#fields").html();
-                var content = "<div class='selectField'>" + tasks[i][0] + "</div>";
+                var content = "<div id = '" + i + "' class='selectField'>" + tasks[i][0] + "</div>";
                 $("#fields").html(oldContent + content);
-                
-                $('#' + i).on("click", () => {
-                    taskContent(i); //tylko ostatni tworzony div ma przypisana funkcje z odpowiednim argumentem, pozostale w ogole nie reaguja na onclick 
-                });
             }
         }
+
+        $('.selectField').on("click", taskContent);
 
         fieldList = true;
     }
@@ -95,23 +93,52 @@ function addTask()
         $("#fields").html("");
         fieldList = false;
     }
- 
 }
 
-function taskContent(argument)
+function taskContent()
 {
-    console.log(argument);  // do testow
+    var div = "";
+    div = this.textContent;
     $("#fields").html("");
     fieldList = false;
 
     $("#text2").css("display", "block");
     $("#cancel2").css("display", "block");
     $("#confirm2").css("display", "block");
+
+    if(lock == false)
+    {
+        $("#confirm2").on("click", function() {
+            newTask(div); 
+        });
+
+        lock = true;
+    }
 }
 
-function newTask()
+function newTask(argument)
 {
+    lock = false;
+    var task = $("#text2").val();
 
+    $("#confirm2").off("click");
+
+    $("#text2").css("display", "none");
+    $("#cancel2").css("display", "none");
+    $("#confirm2").css("display", "none");
+
+    var oldContent = "";
+    var content = "";
+
+    for(i = 0; i < 10; i++)
+    {
+        if(tasks[i][0] == argument)
+        {
+            oldContent = $("#sublist" + i).html();
+            content = "<li>" + task + "</li>";
+            $("#sublist" + i).html(oldContent + content);
+        }
+    }
 }
 
 function closeTask()
