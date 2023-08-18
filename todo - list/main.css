@@ -2,7 +2,7 @@ body
 {
 	background-color: #2F3336;
 	color: #ddd;
-    font-size: 20px;
+    font-size: 22px;
     font-family: 'Kalam', cursive;
 }
 
@@ -16,11 +16,11 @@ h1
     float: left;
 }
 
-h2
+p
 {
-    font-size: 30px;
-    font-weight: 400;
-    text-align: center;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #entry
@@ -150,15 +150,75 @@ h2
     cursor: pointer;
 }
 
-.list
+#task
 {
-    font-size: 32px;
-    padding-left: 35%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
 }
 
-.sublist
+h2
 {
-    font-size: 24px;
+    margin: 10px;
+    float: left;
+}
+
+.cancelField
+{
+    margin-top: 10px;
+    font-size: 30px;
+    float: left;
+}
+
+.cancelField:hover
+{
+    float: left;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.doneField
+{
+    margin-top: 10px;
+    font-size: 30px;
+    float: left;
+}
+
+.doneField:hover
+{
+    float: left;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.cancelTask
+{
+    float: left;
+}
+
+.cancelTask:hover
+{
+    float: left;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.doneTask
+{
+    margin-left: 10px;
+    float: left;
+}
+
+.doneTask:hover
+{
+    float: left;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+ol > li
+{
+    float: left;
 }
 
 #clock
