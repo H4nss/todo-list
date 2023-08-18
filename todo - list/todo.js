@@ -1,8 +1,10 @@
 window.onload = start;
 
 var tasks = new Array(10);
+var colors = new Array(10);
 var fieldList = false;
-var lock = false;
+var lock1 = false;
+var lock2 = false;
 
 for(i = 0; i < 10; i++)
 {
@@ -10,7 +12,17 @@ for(i = 0; i < 10; i++)
 
 	for(j = 0; j < 10; j++)
 	{
-		tasks[i][j] = " ";
+		tasks[i][j] = "";
+	}
+}
+
+for(i = 0; i < 10; i++)
+{
+	colors[i] = new Array(10);
+
+	for(j = 0; j < 10; j++)
+	{
+		colors[i][j] = false;
 	}
 }
 
@@ -47,20 +59,20 @@ function closeField()
 
 function newField()
 {
-    var content = $("#text1").val();
+    var text = $("#text1").val();
     var i = 0;
     var stop = false;
     while(i < 10 && stop == false)
     {
-        if(tasks[i][0] == " ")
+        if(tasks[i][0] == "")
         {
-            tasks[i][0] = content;
+            tasks[i][0] = text;
             stop = true;
         } 
         else i++;
     }
-    var oldContent = $("#task").html();
-    $("#task").html(oldContent + "<ul class='list' id='list" + i + "'><li>" + tasks[i][0] + "</li> <ol class='sublist' id='sublist" + i + "'> </ol> </ul>");
+
+    show();
 }
 
 function addTask()
@@ -77,7 +89,7 @@ function addTask()
     {
         for(let i = 0; i < 10; i++)
         {
-            if(tasks[i][0] != " ")
+            if(tasks[i][0] != "")
             {
                 var oldContent = $("#fields").html();
                 var content = "<div id = '" + i + "' class='selectField'>" + tasks[i][0] + "</div>";
@@ -86,7 +98,6 @@ function addTask()
         }
 
         $('.selectField').on("click", taskContent);
-
         fieldList = true;
     }
     else
@@ -107,19 +118,19 @@ function taskContent()
     $("#cancel2").css("display", "block");
     $("#confirm2").css("display", "block");
 
-    if(lock == false)
+    if(lock1 == false)
     {
         $("#confirm2").on("click", function() {
             newTask(div); 
         });
 
-        lock = true;
+        lock1 = true;
     }
 }
 
 function newTask(argument)
 {
-    lock = false;
+    lock1 = false;
     var task = $("#text2").val();
 
     $("#confirm2").off("click");
@@ -128,18 +139,24 @@ function newTask(argument)
     $("#cancel2").css("display", "none");
     $("#confirm2").css("display", "none");
 
-    var oldContent = "";
-    var content = "";
-
     for(i = 0; i < 10; i++)
     {
         if(tasks[i][0] == argument)
         {
-            oldContent = $("#sublist" + i).html();
-            content = "<li>" + task + "</li>";
-            $("#sublist" + i).html(oldContent + content);
-        }
+            for(j = 0; j < 10; j++)
+            {
+                if(tasks[i][j] == "" && lock2 == false)
+                {
+                    tasks[i][j] = task;
+                    lock2 = true;
+                }
+            }
+        } 
     }
+
+    lock2 = false;
+
+    show();
 }
 
 function closeTask()
@@ -169,4 +186,87 @@ function time()
 	$("#clock").html(day + '/' + month + '/' + year + ' | ' + hour + ':' + minute + ':' + second);
 		 
 	setTimeout("time()",1000);
+}
+
+function show()
+{
+    var lock = true;
+    var content = "";
+
+    for(i = 0; i < 10; i++)
+    {
+        for(j = 0; j < 10; j++)
+        {
+            if(j == 0 && tasks[i][j] != "")
+            {
+                content = content + "<h2 id = '" + i + j + "'>" + tasks[i][j] + "</h2> <span id ='ok" + tasks[i][j] + 
+                "' class ='doneField' onclick = doneField(" + i + ")> <i class='icon-ok'> </i> </span> <span id ='cancel" + tasks[i][j] + 
+                "'class ='cancelField' onclick = deleteField(" + i + ")> <i class='icon-cancel'> </i> </span> <div style='clear:both'> </div>";
+            }
+            if(j == 1 && tasks[i][j] != "")
+            {
+                content = content + "<ol><li id = '" + i + j + "'>" + tasks[i][j] + "</li> <span id ='ok" + tasks[i][j] + "' class ='doneTask' onclick = doneTask(" 
+                + i + "," + j + ")> <i class='icon-ok'> </i> </span> <span id ='cancel" +tasks[i][j] + 
+                "'class ='cancelTask' onclick = deleteTask(" + i + "," + j + ")> <i class='icon-cancel'> </i> </span> <div style='clear:both'> </div>";
+                lock = false;
+            }
+            if(j == 9 && lock == false)
+            {
+                content = content + "</ol>";
+                lock = true;
+            }
+            if(j != 0 && j != 1 && j !=9 && tasks[i][j] != "")
+            {
+                content = content + "<li id = '" + i + j + "'>" + tasks[i][j] + "</li> <span id ='ok" + tasks[i][j] + "' class ='doneTask' onclick = doneTask(" 
+                + i + "," + j + ")> <i class='icon-ok'> </i> </span> <span id ='cancel" + tasks[i][j] + 
+                "'class ='cancelTask' onclick = deleteTask(" + i + "," + j + ")> <i class='icon-cancel'> </i> </span> <div style='clear:both'> </div>";
+            }
+        }
+    }
+
+    $("#task").html(content);
+
+    for(k = 0; k < 10; k++)
+    {
+        for(l = 0; l < 10; l++)
+        {
+            if(colors[k][l] == true)
+            {
+                $("#" + k + l).css("color", "#1c74b2");
+            }
+        }
+    }
+}
+
+function deleteTask(arg1, arg2)
+{
+    tasks[arg1][arg2] = "";
+    colors[arg1][arg2] = false;
+    show();
+}
+
+function doneTask(arg1, arg2)
+{
+    $("#" + arg1 + arg2).css("color", "#1c74b2");
+    colors[arg1][arg2] = true;
+}
+
+function deleteField(arg)
+{
+    for(i = 0; i < 9; i++)
+    {
+        tasks[arg][i] = "";
+        colors[arg][i] = false;
+    }
+
+    show();
+}
+
+function doneField(arg)
+{
+    for(i = 0; i < 9; i++)
+    {
+        $("#" + arg + i).css("color", "#1c74b2");
+        colors[arg][i] = true;
+    }
 }
